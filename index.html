@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API BOX</title>
     <style>
+                /* width */
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: rgb(39, 38, 38); 
+            border-radius: 5px;
+        }
+        
         * {
             padding:0px;
             box-sizing: border-box;
@@ -13,6 +24,7 @@
         }
         html {
             background-color: #524e51;
+            
         }
         #container {
             background-color:#dab617;
@@ -26,32 +38,39 @@
             background-color: rgb(189, 101, 29);
             border-radius: 10px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
         }
         .header input,button{
             border-radius: 10px;
             cursor: pointer;
             height: 30px;
+            margin: 0px 50px;
+            
         }
         .content {
             max-height: 450px;
             overflow: scroll;
+            overflow-x: hidden;
+
+            
         }
         .item {
             background-color: aquamarine;
             border-radius: 10px;
             display: flex;
             justify-content: space-between;
-            margin: 5px 0px
+            margin: 5px 0px;
+            padding: 5px;
         }
-        .content img {
+        .content img,subcontent {
             height: 100px;
             width: 100px;
             border-radius: 100%;
+            
         }
         .item:nth-child(even){
-            background-color: rgb(102, 119, 163);
+            background-color: rgb(154, 170, 209);
         }
     </style>
 </head>
@@ -64,7 +83,7 @@
         <div class="content">
             <div class="item">
                 <img src="https://www.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f01934522c402d/a/v/avatar-1615695904-2089-1615696022.jpg" alt="avatar">
-                <div>
+                <div class="subcontent">
                     <h1>The title of avatar</h1>
                     <p>Something new about this movie</p>
                 </div>
@@ -104,8 +123,9 @@
                     <p>Something new about this movie</p>
                 </div>
             </div>
-            
-            
     </div>
+    <script>
+
+    </script>
 </body>
 </html>
