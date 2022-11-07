@@ -28,10 +28,12 @@
         }
         #container {
             background-color:#dab617;
-            height: 500px;
-            width: 400px;
+            height: 700px;
+            width: 600px;
             border-radius: 10px;
-            margin: 200px auto;
+            margin: 100px auto;
+            box-shadow: rgba(224, 224, 245, 0.25) 0px 50px 100px -20px, rgba(228, 220, 220, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            position: relative;
         }
         .header {
             height: 50px;
@@ -49,7 +51,8 @@
             
         }
         .content {
-            max-height: 450px;
+            margin: 0px 0px 0px 5px;
+            max-height: 642px;
             overflow: scroll;
             overflow-x: hidden;
 
@@ -62,6 +65,7 @@
             justify-content: space-between;
             margin: 5px 0px;
             padding: 5px;
+            
         }
         .content img,subcontent {
             height: 100px;
@@ -81,7 +85,7 @@
          <button>Search</button>
         </div>
         <div class="content">
-            <div class="item">
+            <!-- <div class="item">
                 <img src="https://www.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f01934522c402d/a/v/avatar-1615695904-2089-1615696022.jpg" alt="avatar">
                 <div class="subcontent">
                     <h1>The title of avatar</h1>
@@ -122,10 +126,32 @@
                     <h1>The title of avatar</h1>
                     <p>Something new about this movie</p>
                 </div>
-            </div>
+            </div> -->
     </div>
     <script>
+        getData();
+        const contentmain = document.querySelector(".content");
+        async function getData(){
+            let gain = await fetch("https://randomuser.me/api?results=100") //handling public data from API
+            let {results} = await gain.json();
 
+            contentmain.innerHTML =``; //clear list items
+
+            results.forEach(result => {
+                console.log(result);
+                const divE = document.createElement("div"); 
+                divE.innerHTML = `
+                <div class="item">
+                    <img src="${result.picture.thumbnail}">
+                    <div>
+                        <h1>${result.name.first} ${result.name.last}</h1>
+                        <p>${result.email}</p>
+                    </div>
+                </div> 
+                `; 
+                contentmain.appendChild(divE)
+            })
+        }
     </script>
 </body>
 </html>
