@@ -50,6 +50,12 @@
             margin: 0px 50px;
             
         }
+
+
+        .content .list > div.hidden {
+            display: none;
+        }
+        
         .content {
             margin: 0px 0px 0px 5px;
             max-height: 642px;
@@ -81,22 +87,27 @@
 <body>
     <div id="container">
         <div class="header">
-         <input type="text" placeholder="Searching...">
-         <button>Search</button>
+         <input class="search" type="text" placeholder="Searching...">
+         <button>Copyright by Nguyen Nhu</button>
         </div>
         <div class="content"></div>
     </div>
+
     <script>
         const list = document.querySelector(".content")
+        const listItems = []; //initalizing an empty array(1)
+        const search = document.querySelector(".search")
+              search.addEventListener("input",(e)=>searchItem(e.target.value))
         getData();
         async function getData(){
             const gain = await fetch("https://randomuser.me/api?results=100") //handling public data from API
             const {results} = await gain.json();
-            list.innerHTML = 'Loading..'
+            list.innerHTML = 'Loading..';
             setTimeout(()=>{
                 list.innerHTML ='';
                 results.forEach(result => {
-                        const divE = document.createElement("div"); 
+                        const divE = document.createElement("div");
+                        listItems.push(divE); //pushing looped item to an empty array(1)
                         divE.innerHTML = `
                         <div class="item">
                             <img src="${result.picture.thumbnail}">
@@ -110,7 +121,21 @@
                     }
                 );
                 
-            }, 5000)
+            }, 2000)
+        }
+        
+        function searchItem(keySearch){
+            const searchItems = keySearch.toLowerCase() //call back from main search
+            listItems.forEach(item => {
+                if(item.innerText.toLowerCase().includes(searchItems)){
+                    item.classList.remove('hidden')
+                }
+                else {
+                    item.classList.add('hidden')
+                }
+            })
+            
+            
         }
     </script>
 </body>
